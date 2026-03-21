@@ -712,7 +712,8 @@ createCoordMarker(POSITION_R2, "R END", Color3.fromRGB(220, 100, 30))
 local autoWalkPhase, autoRightPhase = 1, 1
 local autoPlayLeftPhase, autoPlayRightPhase = 1, 1
 
-local AutoWalkEnabled, AutoRightEnabled = false, false
+Enabled.AutoRightEnabled = true
+Enabled.AutoPlayRightEnabled = false
 local AutoPlayLeftEnabled, AutoPlayRightEnabled = false, false
 
 local autoWalkConnection, autoRightConnection = nil, nil
@@ -858,7 +859,7 @@ local function startAutoPlayRight()
     local sequence = {GET_POS_R1_OUT, POSITION_R1, POSITION_R2, POSITION_R1, GET_POS_R1_OUT, GET_POS_1_OUT, POSITION_1, POSITION_2}
 
     autoPlayRightConnection = RunService.Heartbeat:Connect(function()
-        if not AutoPlayRightEnabled then return end
+        if not Enabled.AutoPlayRightEnabled then return end
         local char = Player.Character
         local hrp = char and char:FindFirstChild("HumanoidRootPart")
         if not hrp then return end
@@ -898,7 +899,7 @@ local function startAutoPlayRight()
             end
         else
             hrp.AssemblyLinearVelocity = Vector3.new(0, hrp.AssemblyLinearVelocity.Y, 0)
-            AutoPlayRightEnabled, Enabled.AutoPlayRightEnabled = false, false
+            Enabled.AutoPlayRightEnabled = false
             if VisualSetters.AutoPlayRightEnabled then VisualSetters.AutoPlayRightEnabled(false) end
             if autoPlayRightConnection then autoPlayRightConnection:Disconnect() autoPlayRightConnection = nil end
             local wa = hrp:FindFirstChild("AutoWalkAtt")
