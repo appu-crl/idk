@@ -14,7 +14,7 @@ local HttpService = game:GetService("HttpService")
 local CoreGui = game:GetService("CoreGui")
 local Player = Players.LocalPlayer
 
-local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
+local isMobile = UserInputService.TouchEnabled
 local s = isMobile and 0.65 or 1 -- UI Scale factor
 
 -- Safe character wait
